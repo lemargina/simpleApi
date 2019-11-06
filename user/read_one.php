@@ -15,13 +15,13 @@ include_once '../object/User.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// prepare product object
+// prepare User object
 $user = new User($db);
 
 // set ID property of record to read
 $user->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-// read the details of product to be edited
+// read the details of User 
 $user->readOne();
 
 if($user->name!=null){
@@ -45,7 +45,7 @@ else{
 	// set response code - 404 Not found
 	http_response_code(404);
 	
-	// tell the user product does not exist
-	echo json_encode(array("message" => "Product does not exist."));
+	// tell the user user does not exist
+	echo json_encode(array("message" => "user does not exist."));
 }
 ?>

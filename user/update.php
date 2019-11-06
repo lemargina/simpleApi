@@ -15,22 +15,22 @@ include_once '../object/User.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// prepare product object
+// prepare USer object
 $user = new User($db);
 
-// get id of product to be edited
+// get id of USer to be edited
 $data = json_decode(file_get_contents("php://input"));
 
-// set ID property of product to be edited
+// set ID property of User to be edited
 $user->id = $data->id;
 
-// set product property values
+// set User property values
 $user->name = $data->name;
 $user->emsil = $data->email;
 $user->password = $data->password;
 
 
-// update the product
+// update the User
 if($user->update()){
 	
 	// set response code - 200 ok
@@ -40,7 +40,7 @@ if($user->update()){
 	echo json_encode(array("message" => "User was updated."));
 }
 
-// if unable to update the product, tell the user
+// if unable to update the User, tell the user
 else{
 	
 	// set response code - 503 service unavailable

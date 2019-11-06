@@ -15,16 +15,16 @@ include_once '../object/User.php';
 $database = new Database();
 $db = $database->getConnection();
 
-// prepare product object
+// prepare User object
 $user = new User($db);
 
-// get product id
+// get User id
 $data = json_decode(file_get_contents("php://input"));
 
-// set product id to be deleted
+// set User id to be deleted
 $user->id = $data->id;
 
-// delete the product
+// delete the USer
 if($user->delete()){
 	
 	// set response code - 200 ok
@@ -34,7 +34,7 @@ if($user->delete()){
 	echo json_encode(array("message" => "User was deleted."));
 }
 
-// if unable to delete the product
+// if unable to delete the User
 else{
 	
 	// set response code - 503 service unavailable

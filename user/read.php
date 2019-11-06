@@ -5,20 +5,20 @@ header("Content-Type: application/json; charset=UTF-8");
 include_once '../utils/dbconnect.php';
 include_once '../object/User.php';
 
-// instantiate database and product object
+// instantiate database and User object
 $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
 $user = new User($db);
-// query products
+
 $stmt = $user->read();
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
 if($num>0){
 	
-	// products array
+	
 	$users_arr=array();
 	$users_arr["records"]=array();
 	
@@ -31,7 +31,7 @@ if($num>0){
 		// just $name only
 		extract($row);
 		
-		$product_item=array(
+		$user_item=array(
 				"id" => $id,
 				"name" => $name,
 				"password" => html_entity_decode($password),
@@ -39,7 +39,7 @@ if($num>0){
 
 		);
 		
-		array_push($users_arr["records"], $product_item);
+		array_push($users_arr["records"], $user_item);
 	}
 	
 	// set response code - 200 OK

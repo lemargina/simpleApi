@@ -37,8 +37,7 @@ class User{
     	// prepare query
     	$stmt = $this->conn->prepare($query);
     	
-    	//var_dump($stmt);
-    	//exit;
+    
     	// sanitize
     	//$this->id=htmlspecialchars(strip_tags($this->id));
     	$this->name=htmlspecialchars(strip_tags($this->name));
@@ -135,7 +134,7 @@ class User{
     	// prepare query statement
     	$stmt = $this->conn->prepare( $query );
     	
-    	// bind id of product to be updated
+    	// bind id of user to be updated
     	$stmt->bindParam(1, $this->id);
     	
     	// execute query

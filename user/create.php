@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get database connection
 include_once '../utils/dbconnect.php';
  
-// instantiate product object
+// instantiate user object
 include_once '../object/User.php';
  
 $database = new Database();
@@ -20,10 +20,7 @@ $user = new User($db);
 $data = json_decode(file_get_contents("php://input"));
 //$data = JSON.parse($data);
 $data = (array) $data;
-// get posted data
-//echo $data->name;
- //var_dump($data);
- //exit();
+
 // make sure data is not empty
 if(
     //!empty($data->id) &&
@@ -31,14 +28,14 @@ if(
     !empty($data['password']) &&
     !empty($data['email'])
 ){
- 	//echo "in";    // set product property values
-    //$user->id= $data->id;
+ 	
  	$user->name = $data['name'];
     $user->email = $data['email'];
     $user->password = $data['password'];
    // $user->created = date('Y-m-d H:i:s');
  
-    // create the product
+    // create the user
+    
     if($user->create()){
  
         // set response code - 201 created
@@ -48,7 +45,7 @@ if(
         echo json_encode(array("message" => "User was created."));
     }
  
-    // if unable to create the product, tell the user
+   
     else{
  
         // set response code - 503 service unavailable
